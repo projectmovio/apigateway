@@ -10,3 +10,4 @@ class TokenStore(object):
 
     def validate_token(self, token):
         return token in self.token_store
+

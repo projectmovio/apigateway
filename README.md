@@ -9,4 +9,4 @@
 
 # Run in Docker
 * `docker build -t apigateway:latest .`
-* `docker run -it apigateway:latest`
+* `docker run -it -p 9000:9000 apigateway:latest`

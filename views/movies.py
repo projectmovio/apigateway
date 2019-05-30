@@ -1,3 +1,4 @@
+import logging
 import os
 
 import requests
@@ -5,10 +6,11 @@ import requests
 from flask import Blueprint, request, Response, jsonify
 
 from utils.common import validate_user
-from utils.log import Log
 
-log = Log().get_logger("gateway.movies")
+log = logging.getLogger("apigateway.movies")
+
 profile = Blueprint("movies", __name__, url_prefix="")
+
 host = os.getenv("MOVIE_SERVICE_HOST", "localhost")
 port = os.getenv("MOVIE_SERVICE_PORT", "8082")
 url = "{}:{}".format(host, port)

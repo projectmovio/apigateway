@@ -1,9 +1,12 @@
+import logging
 import os
 
 import requests
 
 from flask import Blueprint, jsonify
 import utils.common as common
+
+log = logging.getLogger("apigateway.login")
 
 profile = Blueprint('login', __name__, url_prefix="")
 

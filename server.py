@@ -1,11 +1,15 @@
+import logging
+
 from flask import Flask
 from flask_cors import CORS
 
-from utils.log import Log
 from views import login, movies, watch_history
 
+log = logging.getLogger("apigateway")
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logging.getLogger("urllib3").setLevel("WARNING")
+
 app = Flask(__name__)
-log = Log().get_logger("gateway")
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(login.profile)

@@ -1,3 +1,4 @@
+import logging
 import os
 
 import requests
@@ -5,10 +6,11 @@ import requests
 from flask import Blueprint, request, Response
 
 from utils.common import validate_user
-from utils.log import Log
 
-log = Log().get_logger("gateway.watch_history")
+log = logging.getLogger("apigateway.watch_history")
+
 profile = Blueprint("watch_history", __name__, url_prefix="")
+
 host = os.getenv("WATCH_HISTORY_SERVICE_HOST", "localhost")
 port = os.getenv("WATCH_HISTORY_SERVICE_PORT", "8083")
 url = "{}:{}".format(host, port)

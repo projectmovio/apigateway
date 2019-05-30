@@ -1,7 +1,9 @@
-from data.token_store import TokenStore
-from utils.log import Log
+import logging
 
-log = Log().get_logger("gateway.utils.common")
+from data.token_store import TokenStore
+
+log = logging.getLogger("apigateway.common")
+
 token_store = TokenStore()
 
 
@@ -10,6 +12,4 @@ def validate_user(req):
     log.debug("Token: %s", token)
 
     valid = token_store.validate_token(token)
-    if not valid:
-        return False
-    return True
+    return valid

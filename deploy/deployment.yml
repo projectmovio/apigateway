@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apigateway
+  labels:
+    app: apigateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apigateway
+  template:
+    metadata:
+      labels:
+        app: apigateway
+    spec:
+      containers:
+        - name: apigateway
+          image: projectmovio/apigateway:0.0.1
+          ports:
+            - containerPort: 9000
+          resources:
+            requests:
+              memory: "20Mi"
+              cpu: "2m"
+            limits:
+              memory: "40Mi"
+              cpu: "100m"
+          env:
+            - name: LOGIN_SERVICE_HOST
+              value: "http://login"
+            - name: LOGIN_SERVICE_PORT
+              value: 8081
+            - name: MOVIE_SERVICE_HOST
+              value: "http://movie"
+            - name: MOVIE_SERVICE_PORT
+              value: 8082
+            - name: WATCH_HISTORY_SERVICE_HOST
+              value: "http://watch-history"
+            - name: WATCH_HISTORY_SERVICE_PORT
+              value: 8083
